@@ -33,7 +33,13 @@ function Register() {
       const submitHandler = (e) => {
         e.preventDefault();
         if(email.endsWith('@tothenew.com')){
-        dispatch(registerUser(name, email, password, avatar));
+          if(avatar===""){
+            dispatch(registerUser(name, email, password));
+          }
+          else{
+
+            dispatch(registerUser(name, email, password, avatar));
+          }
         }
         else{
           alert('Enter a Email that ends with @tothenew.com');
@@ -62,7 +68,7 @@ function Register() {
               <p className="signInBtn">Already Signed In? Log In</p>
             </Link>
             <br/><br/>
-            <input type="submit" value='Register'/>
+            <input type="submit" value='Register' disabled={loading}/>
           </form>
         </div>
       </div>
