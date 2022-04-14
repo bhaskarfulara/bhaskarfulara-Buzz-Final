@@ -1,0 +1,113 @@
+ .newPost {
+   width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1rem;
+    box-sizing: border-box;
+    position: absolute;
+    top: 11.9%;
+    left: 32%;
+    -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    z-index: 1;
+  }
+  
+  .newPostForm {
+    background-color: white;
+    width: 100%;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .newPostForm > img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .newPostForm > h3 {
+    margin: 2vmax;
+  }
+  
+  .newPostForm > input[type="text"] {
+    width: 100%;
+    padding: 1vmax;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font: 100 1.2rem "Roboto", sans-serif;
+  }
+  
+  .newPostForm > input[type="file"] {
+    border-radius: 30px;
+    /* margin: 2vmax; */
+    border: none;
+  }
+
+
+  
+  .newPostForm > input[type="file"]::-webkit-file-upload-button {
+    background-color: rgb(38, 63, 173);
+    color: white;
+    width: 100%;
+    padding: 0.5rem;
+    /* border-radius: 30px; */
+    border: none;
+    font: 100 1.2rem "Roboto", sans-serif;
+  }
+
+  .imgFile{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 1px solid rgb(38, 63, 173);
+  }
+
+  @media screen and (max-width: 768px) {
+    .newPost {
+       width: 45%;
+       position: absolute;
+       top: 11.9%;
+       left: 10%;
+       -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+       box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+       z-index: 1;
+     }
+
+  }
+
+  @media screen and (max-width: 430px) {
+    .newPost {
+      width: 80%;
+      position: absolute;
+      top: 11.9%;
+      left: 10%;
+      -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+      box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+      z-index: 1;
+    }
+  }
+  
+  /* @media screen and (max-width: 600px) {
+    .newPostForm {
+      width: 100%;
+    }
+  
+    .newPostForm > input {
+      padding: 4vw 8vw;
+      margin: 2vmax;
+      font: 100 1.2rem "Roboto", sans-serif;
+      margin: 4vw;
+    }
+    .newPostForm > input[type="file"] {
+      width: 100%;
+    }
+  
+    .newPostForm > input[type="file"]::-webkit-file-upload-button {
+      width: 70%;
+    }
+  } */

@@ -1,0 +1,234 @@
+.home{
+  margin-top: 2%;
+}
+
+.profileContainer{
+  width: 20%;
+  /* margin-left: 104px; */
+  -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+  border-radius: 20px;
+  position: absolute;
+  top: 11.9%;
+  left: 8.2%;
+}
+
+.backgroundImage{
+  width: 100%;
+  height: 130px;
+  border-radius: 20px;
+  /* border: 1px solid yellow; */
+  background-color: aqua;
+
+}
+
+.proImage{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  /* border: 1px solid red; */
+  position: relative;
+  top: -60px;
+  left: 30%;
+  object-fit: cover;
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.userDetail{
+  /* border: 1px solid yellow; */
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: -55px;
+}
+
+.profileDetail{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 1rem;
+}
+
+.sidebarComponent{
+  width: 19%;
+  /* margin-left: 104px; */
+  -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+  /* border: 1px solid green; */
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  position: absolute;
+  top: 55%;
+  left: 8.2%;
+}
+
+li{
+  color: grey;
+  margin-top: 5px;
+  padding: 0.6rem;
+  list-style-type:none ;
+}
+.feed{
+  width: 35%;
+  position: absolute;
+  top: 44%;
+  left: 32%;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.Contacts{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 50vh;
+  border-radius: 20px;
+  -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+  padding: 10px;
+  overflow-y: scroll;
+  /* justify-content: space-between; */
+  position: absolute;
+  top: 11.9%;
+  left: 71%;
+}
+.ContactHead{
+  display: flex;
+  justify-content: space-between;
+
+}
+.searchIcon{
+  /* margin-top: 5px; */
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  text-align: center;
+}
+.searchIcon:hover{
+  background-color: grey;
+  border-radius: 50%;
+
+}
+
+@media screen and (max-width: 1024px) {
+  .profileContainer{
+    width: 22.9%;
+    /* margin-left: 104px; */
+    -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    border-radius: 20px;
+    position: absolute;
+    top: 11.9%;
+    left: 6.2%;
+  }
+
+  .sidebarComponent{
+    width: 21.7%;
+    /* margin-left: 104px; */
+    -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    /* border: 1px solid green; */
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    padding: 0.5rem;
+    position: absolute;
+    top: 62%;
+    left: 6.2%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .profileContainer, .sidebarComponent{
+    display: none;
+  } 
+
+  .feed{
+    width: 45%;
+    position: absolute;
+    top: 43%;
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .feed{
+    width: 80%;
+    position: absolute;
+    top: 45%;
+    left: 10%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* .home {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    height: 100vh;
+  }
+  
+  .homeleft {
+    background-image: linear-gradient(to right, #fff5bc, #cec1ff);
+  
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vmax;
+    box-sizing: border-box;
+  }
+  .homeright {
+    padding: 2vmax;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .homeUser {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.507);
+    transition: all 0.5s;
+  }
+  .homeUser > img {
+    height: 3vmax;
+    width: 3vmax;
+    margin: 1vmax;
+    border-radius: 100%;
+    border: 3px solid rgb(255, 201, 201);
+  }
+  
+  .homeUser:hover {
+    transform: translateY(-10px);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .home {
+      grid-template-columns: 2fr 1fr;
+    }
+  
+    .homeleft {
+      padding: 0;
+      min-height: 90vh;
+    }
+  }
+   */

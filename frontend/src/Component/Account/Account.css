@@ -1,0 +1,236 @@
+.account {
+  box-sizing: border-box;
+  display: flex;
+  height: 92vh;
+  padding:0.1rem 1rem;
+  justify-content: space-between;
+}
+
+.accountleft {
+  /* background-image: linear-gradient(to right, #fff5bc, #cec1ff); */
+  /* border: 1px solid green; */
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vmax;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.accountright {
+  padding: 2vmax;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid yellow; */
+  width: 28%;
+  -webkit-box-shadow:0px 0px 16px -8px rgba(0,0,0,0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+}
+.frnPost{
+  position: relative;
+  text-align: center;
+  width: 80%;
+}
+.frndList{
+  display: inline-block;
+  position:relative;
+  left: -5vw;
+}
+
+.postList{
+  display: inline-block;
+  position: relative;
+  left: 3vw;
+  top: -7.3vh;
+}
+
+.frndList button{
+  border: none;
+  background-color: white;
+  opacity: 0.7;
+}
+
+.accountright img:hover {
+  transform: scale(1.1);
+}
+
+.accountright img {
+  transition: all 0.5s;
+}
+
+.accountright > h5 {
+  margin: 2vmax;
+}
+
+.accountright > a {
+  color: rgb(73, 73, 73);
+  text-decoration: none;
+  font: 100 1.2rem "Roboto";
+  text-align: center;
+  margin-top: 2vmax;
+  padding: 0.5vmax 1vmax;
+  transition: all 0.5s;
+}
+.myfeed{
+  width:50% ;
+}
+
+/* .accountright > a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+} */
+.accountright > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vmax;
+}
+
+/* .accountright > div > button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+} */
+.accountright > div > button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.5s;
+  /* padding: 0.5vmax 1vmax; */
+}
+
+#dmprofile{
+  color:red;
+  /* background-color: red; */
+  /* margin: 2vmax; */
+  border: 1px solid red;
+}
+
+#dmprofile:hover{
+  background-color: red;
+  color: white;
+}
+
+#ediPro{
+  color: purple;
+  opacity: 0.6;
+}
+
+#ediPro:hover{
+  color: purple;
+  transform: scale(1.2);
+}
+
+#chanPass{
+  color: purple;
+  opacity: 0.6;
+}
+
+#chanPass:hover{
+  color: purple;
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 600px) {
+  .account {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .accountleft {
+    padding: 0;
+    min-height: 90vh;
+  }
+
+  .accountright > a {
+    font: 100 1rem "Roboto";
+    margin-top: 6vw;
+  }
+}
+
+
+/* .account {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    height: 92vh;
+  }
+  
+  .accountleft {
+    background-image: linear-gradient(to right, #fff5bc, #cec1ff);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vmax;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .accountright {
+    padding: 2vmax;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .accountright img:hover {
+    transform: scale(1.1);
+  }
+  
+  .accountright img {
+    transition: all 0.5s;
+  }
+  
+  .accountright > h5 {
+    margin: 2vmax;
+  }
+  
+  .accountright > a {
+    color: rgb(73, 73, 73);
+    text-decoration: none;
+    font: 100 1.2rem "Roboto";
+    text-align: center;
+    margin-top: 2vmax;
+    padding: 0.5vmax 1vmax;
+    transition: all 0.5s;
+  }
+  
+  .accountright > a:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+  }
+  .accountright > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vmax;
+  }
+  
+  .accountright > div > button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+  }
+  .accountright > div > button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    padding: 0.5vmax 1vmax;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .account {
+      grid-template-columns: 2fr 1fr;
+    }
+  
+    .accountleft {
+      padding: 0;
+      min-height: 90vh;
+    }
+  
+    .accountright > a {
+      font: 100 1rem "Roboto";
+      margin-top: 6vw;
+    }
+  }
+   */
