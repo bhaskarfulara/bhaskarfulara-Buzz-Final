@@ -21,7 +21,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 
 
 export const registerUser =
-  (name, email, password, avatar) => async (dispatch) => {
+  (name, email, password,avatar="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg") => async (dispatch) => {
     try {
       dispatch({
         type: "RegisterRequest",

@@ -42,7 +42,7 @@ const cloudinary =require('cloudinary')
 exports.register = async(req,res) => {
   try{
 
-   const {name,email,password,avatar} = req.body;
+   const {name,email,password,avatar="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} = req.body;
    let user = await User.findOne({email});
    if(user){ 
         return res

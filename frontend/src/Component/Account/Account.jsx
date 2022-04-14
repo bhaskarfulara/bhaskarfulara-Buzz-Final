@@ -18,7 +18,7 @@ function Account() {
     const {
         error: likeError,
         message,
-        loading: deleteLoading
+        loading: deleteLoading,
     } = useSelector((state) => state.like);
 
     const logOutHandler=async ()=>{
@@ -96,7 +96,7 @@ function Account() {
                 <Button variant="contained" onClick={logOutHandler}>Logout</Button>
                 <Link to={"/update/profile"} id='ediPro'>Edit Profile</Link>
                 <Link to={"/update/password"} id='chanPass'>Change Password</Link><br/>
-                <Button variant="text" id="dmprofile">Delete My Profile</Button>
+                <Button variant="text" id="dmprofile" onClick={deleteProfileHandler} disabled={deleteLoading}>Delete My Profile</Button>
 
                 <Dialog open={friendsToggle} onClose={() => setFriendsToggle(!friendsToggle)}>
                 <div className="DialogBox">

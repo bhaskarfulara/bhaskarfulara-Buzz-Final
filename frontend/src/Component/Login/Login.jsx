@@ -3,18 +3,20 @@ import React, { useEffect, useState } from "react";
 import "./Login.css";
 import logo from './../../images/to_the_new.jpg';
 import {GoogleLogin} from 'react-google-login';
-import { Typography, Button } from "@mui/material";
+// import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../Actions/User";
+import { loginUser, registerUser } from "../../Actions/User";
 import { loadUser } from "../../Actions/User";
 
 // import { useAlert } from "react-alert";
 
 const Login=()=> {
-  const clientId = '946055713868-fpartl9o2lbbg64redt4pc66bkbm4g0q.apps.googleusercontent.com';
+  const clientId = '84959396412-n09ftpd9v4vf233p8osgf5eg36fm9v74.apps.googleusercontent.com';
   const [email,setemail]=useState("");
   const [password,setPass]=useState();
+  // const [avatar,setAvatar]=useState("");
+  const [name,setName]=useState("");
   const dispatch =useDispatch();
   const {error}=useSelector(state=>state.user)  
   const {message}=useSelector(state=>state.user)
@@ -31,6 +33,25 @@ const Login=()=> {
     }
  
   };
+
+
+  const responseGoogle=async(response)=>{
+    // console.log(response)
+    if(response.profileObj.email.endsWith("tothenew.com")){
+      setemail(response.profileObj.email)
+      setPass('Bhaskar');
+      setName(response.profileObj.givenName)
+      await dispatch(registerUser(name, email, password));
+      // await dispatch(loginUser(email, password));
+      // loginHandler();
+      // console.log(response.profileObj.email,response.profileObj.givenName,response.profileObj.imageUrl);
+    }
+    else{
+      alert("use your tothenew official mail to login");
+    }
+  }
+
+  
 
   useEffect(() => {
     if(error){
@@ -61,8 +82,8 @@ const Login=()=> {
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className='Signinbtn'>Sign In with Google</button>
                         )}
                         buttonText="Login"
-                        onSuccess='' 
-                        onFailure=''
+                        onSuccess={responseGoogle} 
+                        // onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
                     />
                     {/* <button className='Signinbtn'>Sign In with Google</button> */}
