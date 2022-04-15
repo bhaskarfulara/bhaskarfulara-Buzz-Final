@@ -27,6 +27,7 @@ const Login=()=> {
     if(email.endsWith('@tothenew.com')){
       await dispatch(loginUser(email, password));
       dispatch(loadUser());
+      
     }
     else{
       alert('Enter a valid Email');
@@ -36,12 +37,13 @@ const Login=()=> {
 
 
   const responseGoogle=async(response)=>{
-    // console.log(response)
+    console.log(response)
     if(response.profileObj.email.endsWith("tothenew.com")){
       setemail(response.profileObj.email)
       setPass('Bhaskar');
       setName(response.profileObj.givenName)
       await dispatch(registerUser(name, email, password));
+      
       // await dispatch(loginUser(email, password));
       // loginHandler();
       // console.log(response.profileObj.email,response.profileObj.givenName,response.profileObj.imageUrl);
@@ -83,7 +85,7 @@ const Login=()=> {
                         )}
                         buttonText="Login"
                         onSuccess={responseGoogle} 
-                        // onFailure={responseGoogle}
+                        onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
                     />
                     {/* <button className='Signinbtn'>Sign In with Google</button> */}

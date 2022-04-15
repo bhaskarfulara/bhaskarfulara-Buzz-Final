@@ -86,6 +86,8 @@ exports.register = async(req,res) => {
 
 }
 
+
+
 // for login code 
 
 exports.login = async (req,res) => {

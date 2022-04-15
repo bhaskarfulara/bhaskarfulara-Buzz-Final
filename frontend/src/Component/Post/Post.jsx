@@ -29,7 +29,23 @@ const Post = ({ postId,
     ownerName,
     ownerId,
     isDelete = false,
-    isAccount = false, }) => {
+    isAccount = false,
+    isModerator=false,
+}) => {
+
+    // if(isModerator===true){
+    //     isAccount=true;
+    //     isDelete=true;
+    // }
+
+    // const [adminUser] =useSelector()
+    const {email}= useSelector(state => state.user.user)
+  
+    if(email==="admin@tothenew.com"){
+        isModerator=true;
+        isAccount=true;
+        isDelete=true;
+    }
 
     const [liked, setLiked] = useState(false);
     const [likesUser, setlikesUser] = useState(false)

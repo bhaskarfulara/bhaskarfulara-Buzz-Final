@@ -1,5 +1,5 @@
 
-import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Routes,Redirect} from 'react-router-dom'
 import './App.css';
 import Header from './Component/Header/Header';
 import { loadUser } from './Actions/User';
@@ -29,7 +29,8 @@ function App() {
       {isAuthenticated && <Header/>}
       <Routes>
          <Route path="/" element={isAuthenticated ?<Home/> : <Login/>}/>
-         <Route path="/account" element={isAuthenticated ?<Account/>: <Login/>}/>
+         <Route path="/Home" element={isAuthenticated ?<Home/> : <Login/>}/>
+         {/* <Route path="/account" element={isAuthenticated ?<Account/>: <Login/>}/> */}
          <Route path="/newpost" element={isAuthenticated ?<NewPost/>: <Login/>}/>
          <Route path="/register" element={isAuthenticated ? <Account/> : <Register/>}/>
          

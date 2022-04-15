@@ -45,7 +45,7 @@ exports.createPost = async (req,res) => {
 exports.deletePost = async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-  
+      const moderator="625948b90ee73415b0ced7bd"
       if (!post) {
         return res.status(404).json({
           success: false,
@@ -53,7 +53,8 @@ exports.deletePost = async (req, res) => {
         });
       }
   
-      if (post.owner.toString() !== req.user._id.toString()) {
+      // if (post.owner.toString() !== req.user._id.toString() && req.user._id.toString()!==moderator) {
+        if (post.owner.toString() !== req.user._id.toString() && req.user._id.toString()!==moderator) {
         return res.status(401).json({
           success: false,
           message: "Unauthorized",
