@@ -45,7 +45,7 @@ function Home() {
                     
                 </div>
                 <div className='proImage'>
-                    <img src={user.avatar.url} className='img'></img>
+                    <img src={user.avatar.url} alt="" className='img'></img>
                 </div>
                 <div className='userDetail'>
                     <h3><b>{user.name}</b></h3>
@@ -161,37 +161,3 @@ function Home() {
 }
 
 export default Home;
-
-{/* loading || usersLoading===true ? <Loader/> : <div className='home'>
-    <div className="homeleft">
-      { posts && posts.length > 0 ? posts.map((post)=>(
-        <Post 
-        // postImage={"https://www.shaadidukaan.com/vogue/wp-content/uploads/2019/08/hug-kiss-images.jpg"}
-        key={posts._id}
-        caption={post.caption}
-        postId={post._id}
-        postImage={post.image.url}
-        likes={post.likes}
-        comments={post.comments}
-        ownerImage={post.owner.avatar}
-        ownerName={post.owner.name}
-        ownerId= {post.owner._id}
-        
-        />
-
-      )) : <Typography variant='h6'>No post yet</Typography>
-    } */}
-  {/* //     </div>
-  //     <div className="homeright">
-  //       { */}
-  {/* //         users &&  users.length>0 ? users.map((user)=>(
-  //           <User  */}
-  {/* //           key={user._id}
-  //           userId={user._id}
-  //           name={user.name} avatar={user.avatar.url}/>
-  //         )):<Typography>No users yet</Typography>
-  //       }
-       
-  //     </div>
-
-  // </div> */}

@@ -29,8 +29,8 @@ function App() {
       {isAuthenticated && <Header/>}
       <Routes>
          <Route path="/" element={isAuthenticated ?<Home/> : <Login/>}/>
-         <Route path="/Home" element={isAuthenticated ?<Home/> : <Login/>}/>
-         {/* <Route path="/account" element={isAuthenticated ?<Account/>: <Login/>}/> */}
+         {/* <Route path="/Home" element={isAuthenticated ?<Home/> : <Login/>}/> */}
+         <Route path="/account" element={isAuthenticated ?<Account/>: <Login/>}/>
          <Route path="/newpost" element={isAuthenticated ?<NewPost/>: <Login/>}/>
          <Route path="/register" element={isAuthenticated ? <Account/> : <Register/>}/>
          
