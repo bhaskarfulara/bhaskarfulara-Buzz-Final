@@ -92,14 +92,27 @@ const Post = ({ postId,
     const updateCaptionHandler = (e) => {
         e.preventDefault();
         dispatch(updatePost(captionValue, postId));
-        dispatch(getMyPosts());
+        if(email==="admin@tothenew.com"){
+            dispatch(loadUser());
+            window.location.reload(true);
+        }
+        else{
+            dispatch(getMyPosts());
+        }
     };
 
 
     const deletePostHandler = async () => {
         await dispatch(deletePost(postId));
-        dispatch(getMyPosts());
-        dispatch(loadUser());
+        if(email==="admin@tothenew.com"){
+            dispatch(loadUser());
+            window.location.reload(true);
+        }
+        else{
+            dispatch(getMyPosts());
+        }
+        
+        
       };
 
 
@@ -109,7 +122,7 @@ const Post = ({ postId,
                 setLiked(true)
             }
         })
-    }, [likes, user._id,])
+    }, [likes, user._id,dispatch])
 
 
 

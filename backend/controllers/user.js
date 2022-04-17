@@ -198,6 +198,47 @@ exports.friends = async (req,res) => {
 }
 
 
+exports.friendstoadmin = async (req,res) => {
+  try {
+
+      const id="625adff7873065be04eed6b5";
+     const userToFriend = await User.findById(id);
+     const loggedInUser = await User.findById(req.user._id); 
+     
+     if(!userToFriend){
+         return res.status(404).json({
+             success:false,
+             message:"User not found",
+         })
+     }
+     if(loggedInUser.friendslist.includes(id)){
+
+        res.status(200).json({
+          success:true,
+      });
+     }
+
+     else{
+      loggedInUser.friendslist.push(id);
+      userToFriend.friends.push(loggedInUser._id);
+
+      await loggedInUser.save();
+      await userToFriend.save();
+      res.status(200).json({
+          success:true,
+          message:"User added as friend",
+      });
+     }
+    
+
+  } catch (error) {
+      res.status(500).json({
+          message:error.message,
+      });
+  }
+}
+
+
 exports.updatePassword = async (req, res) => {
     try {
       const user = await User.findById(req.user._id).select("+password");

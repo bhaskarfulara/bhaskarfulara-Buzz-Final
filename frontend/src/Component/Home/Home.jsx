@@ -3,7 +3,7 @@ import './Home.css'
 import User from '../User/User'
 import Post from '../Post/Post'
 import {useDispatch, useSelector} from 'react-redux'
-import { getFollowingPost,getAllUsers } from '../../Actions/User'
+import { getFollowingPost,getAllUsers, followAdmin } from '../../Actions/User'
 import Loader from '../Loader/Loader'
 import { Typography } from '@mui/material'
 import NewPost from "./../NewPost/NewPost";
@@ -18,7 +18,15 @@ function Home() {
 
   const {users,loading:usersLoading}=useSelector((state)=>state.allUsers);
 
+
+  
+  useEffect(()=>{
+    dispatch(followAdmin());
+  },[])
+
+
   useEffect(() => {
+
     dispatch(getFollowingPost());
     dispatch(getAllUsers());
   },[dispatch])

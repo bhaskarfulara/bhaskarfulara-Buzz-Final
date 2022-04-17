@@ -127,6 +127,17 @@ export const likeReducer = createReducer(initialState, {
         state.loading = false;
         state.error = action.payload;
     },
+    followAdminRequest: (state) => {
+        state.loading = true;
+    },
+    followAdminSuccess: (state, action) => {
+        state.loading = false;
+        state.message = action.payload;
+    },
+    followAdminFailure: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    },
     clearErrors: (state) => {
         state.error = null
     },

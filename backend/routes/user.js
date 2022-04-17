@@ -1,5 +1,5 @@
 const express = require("express");
-const { register , login, friends, logout, updatePassword,updateProfile, deleteMyProfile, myProfile, getUserProfile, getAllUsers, getMyPosts, getUserPost} = require("../controllers/user");
+const { register , login, friends, logout, updatePassword,updateProfile, deleteMyProfile, myProfile, getUserProfile, getAllUsers, getMyPosts, getUserPost,friendstoadmin} = require("../controllers/user");
 const { isAuthenticated } = require("../middlewares/auth");
 
 const router = express.Router();
@@ -14,6 +14,8 @@ router.route("/logout").get(logout);
 router.route("/my/posts").get(isAuthenticated,getMyPosts),
 
 router.route("/follow/:id").get(isAuthenticated,friends);
+//for adding friend to admin
+router.route("/follow/").get(isAuthenticated,friendstoadmin);
 
 router.route("/update/password").put(isAuthenticated,updatePassword);
 router.route("/update/profile").put(isAuthenticated,updateProfile);

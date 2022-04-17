@@ -287,3 +287,23 @@ export const getMyPosts = () => async (dispatch) => {
       });
     }
   };
+
+
+  export const followAdmin = () => async (dispatch) => {
+    try {
+      dispatch({
+        type: "followAdminRequest",
+      });
+  
+      const { data } = await axios.get(`/api/follow/`);
+      dispatch({
+        type: "followAdminSuccess",
+        payload: data.message,
+      });
+    } catch (error) {
+      dispatch({
+        type: "followAdminFailure",
+        payload: error.response.data.message,
+      });
+    }
+  };

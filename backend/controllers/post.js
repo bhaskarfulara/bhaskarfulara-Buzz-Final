@@ -134,37 +134,42 @@ exports.createPost = async (req,res) => {
 exports.deletePost = async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const moderator="625948b90ee73415b0ced7bd"
+      const moderator="625adff7873065be04eed6b5"
       if (!post) {
         return res.status(404).json({
           success: false,
           message: "Post not found",
         });
       }
+      
+      if(req.user._id.toString()===moderator || post.owner.toString() === req.user._id.toString()){
+        await cloudinary.uploader.destroy(post.image.public_id);
   
+        await post.remove();
+    
+        const user = await User.findById(req.user._id);
+    
+        const index = user.posts.indexOf(req.params.id);
+        user.posts.splice(index, 1);
+    
+        await user.save();
+    
+        res.status(200).json({
+          success: true,
+          message: "Post deleted",
+        });
+      }
+
+
       // if (post.owner.toString() !== req.user._id.toString() && req.user._id.toString()!==moderator) {
-        if (post.owner.toString() !== req.user._id.toString() && req.user._id.toString()!==moderator) {
+      else{
         return res.status(401).json({
           success: false,
           message: "Unauthorized",
         });
       }
   
-      await cloudinary.uploader.destroy(post.image.public_id);
-  
-      await post.remove();
-  
-      const user = await User.findById(req.user._id);
-  
-      const index = user.posts.indexOf(req.params.id);
-      user.posts.splice(index, 1);
-  
-      await user.save();
-  
-      res.status(200).json({
-        success: true,
-        message: "Post deleted",
-      });
+     
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -240,7 +245,7 @@ exports.getPostOffriends = async (req,res) => {
 exports.updateCaption = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-
+    const moderator="625adff7873065be04eed6b5"
     if (!post) {
       return res.status(404).json({
         success: false,
@@ -248,7 +253,7 @@ exports.updateCaption = async (req, res) => {
       });
     }
 
-    if (post.owner.toString() !== req.user._id.toString()) {
+    if (post.owner.toString() !== req.user._id.toString() && req.user._id.toString()!== moderator) {
       return res.status(401).json({
         success: false,
         message: "Unauthorized",
