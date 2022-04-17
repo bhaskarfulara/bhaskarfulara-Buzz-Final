@@ -30,9 +30,10 @@ function App() {
       <Routes>
          <Route path="/" element={isAuthenticated ?<Home/> : <Login/>}/>
          {/* <Route path="/Home" element={isAuthenticated ?<Home/> : <Login/>}/> */}
+         {/* <Redirect from='/login' to="/Home" /> */}
          <Route path="/account" element={isAuthenticated ?<Account/>: <Login/>}/>
          <Route path="/newpost" element={isAuthenticated ?<NewPost/>: <Login/>}/>
-         <Route path="/register" element={isAuthenticated ? <Account/> : <Register/>}/>
+         <Route path="/register" element={isAuthenticated ? <Home/> : <Register/>}/>
          
          <Route path="/update/profile" element={isAuthenticated? <UpdateProfile/> : <Login/>}></Route>
 
