@@ -81,7 +81,7 @@ function Account() {
                 <div className="frnPost" style={{width:'100%'}}>
                     <div className='frndList'>
                         <button onClick={() => setFriendsToggle(!friendsToggle)}><Typography>Friends</Typography></button>
-                        <Typography>{user.friends.length-1}</Typography>
+                        <Typography>{user.friends.length===0 ? "0" : user.friends.length-1}</Typography>
                     </div>
                     <div className='postList'>
                         <Typography>Post</Typography>

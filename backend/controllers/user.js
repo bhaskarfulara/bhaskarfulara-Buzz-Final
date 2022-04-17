@@ -211,7 +211,7 @@ exports.friendstoadmin = async (req,res) => {
              message:"User not found",
          })
      }
-     if(loggedInUser.friendslist.includes(id)){
+     if(loggedInUser.friendslist.includes(id) || loggedInUser.friends.includes(req.user._id)){
 
         res.status(200).json({
           success:true,
@@ -221,6 +221,8 @@ exports.friendstoadmin = async (req,res) => {
      else{
       loggedInUser.friendslist.push(id);
       userToFriend.friends.push(loggedInUser._id);
+
+      loggedInUser.friends.push(req.user._id);
 
       await loggedInUser.save();
       await userToFriend.save();

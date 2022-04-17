@@ -18,16 +18,15 @@ function Home() {
 
   const {users,loading:usersLoading}=useSelector((state)=>state.allUsers);
 
+  
 
 
-  useEffect(()=>{
-    dispatch(followAdmin());
-  },[])
-
+  
 
   useEffect(() => {
 
     dispatch(getFollowingPost());
+
     dispatch(getAllUsers());
   },[dispatch])
 
@@ -45,6 +44,11 @@ function Home() {
 }, [message,likeerror,dispatch,error])
 
 
+useEffect(()=>{
+  dispatch(followAdmin());
+
+},[dispatch])
+
 
   return (
        <div className='home'>
@@ -61,7 +65,7 @@ function Home() {
 
                 <div className='profileDetail'>
                     <div>
-                        {user.friends.length-1}
+                        {user.friends.length===0 ? "0" : user.friends.length-1}
                         <p style={{color:'grey'}}>Friends</p>
                     </div>
                     <div>
@@ -164,8 +168,12 @@ function Home() {
         }
       </div> */}
       </div>
-    
+
+      
+  
   )
+  
 }
+
 
 export default Home;
