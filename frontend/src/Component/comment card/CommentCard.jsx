@@ -15,6 +15,7 @@ function CommentCard({
     const dispatch = useDispatch()
     
     const deleteCommentHandle=async()=>{
+        console.log(commentId)
         await dispatch(deleteCommentOnPost(postId,commentId))
         if (!isAccount) {
             dispatch(getFollowingPost());

@@ -216,6 +216,42 @@ exports.likeAndUnlikePost = async(req,res) =>{
 };
 
 
+exports.flagedandUnflaged = async(req,res) =>{
+  try{
+    const post = await Post.findById(req.params.id);
+
+    if(!post){
+        return res.status(404).json({
+            success:false,
+            message:"post not found",
+        });
+    }
+    if(post.flags.includes(req.user._id)){
+        const index = post.flags.indexOf(req.user._id);
+        post.flags.splice(index,1);
+        await post.save();
+        return res.status(200).json({
+            success:true,
+            message:"post unflaged",
+        });
+    }
+    else{
+      post.flags.push(req.user._id);
+      await  post.save();
+      return res.status(200).json({
+          success:true,
+          message:"post flagged",
+      });
+    }
+   
+  }catch(error){
+      res.status(500).json({
+          success:false,
+          message:error.message,
+      });
+  }
+};
+
 exports.getPostOffriends = async (req,res) => {
   try{
     const user = await User.findById(req.user._id);

@@ -20,6 +20,25 @@ export const likePost=(id)=>async(dispatch)=>{
     }
 }
 
+export const flagPost=(id)=>async(dispatch)=>{
+  try {
+
+      dispatch({
+          type: "flagRequest",
+      })
+
+      const {data}=await axios.get(`api/post/flags/${id}`)
+
+      dispatch({
+          type:"flagSuccess",
+          payload: data.message,
+      })
+      
+  } catch (error) {
+      dispatch({ type: "flagFailure", payload: error.response.data.message })
+  }
+}
+
 export const updatePost = (caption, id) => async (dispatch) => {
     try {
       dispatch({
@@ -90,25 +109,26 @@ export const addCommentOnPost=(id,comment)=>async(dispatch)=>{
 }
 
 
-export const deleteCommentOnPost=(id,commentId)=>async(dispatch)=>{
-    try {
+export const deleteCommentOnPost = (id, commentId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "deleteCommentRequest",
+    });
 
-        dispatch({
-            type: "deleteCommentRequest",
-        })
-
-        const {data}=await axios.delete(`api/posts/comments/${id}`,{data:commentId})
-
-        dispatch({
-            type:"deleteCommentSuccess",
-            payload: data.message,
-        })
-        
-    } catch (error) {
-        dispatch({ type: "deleteCommentFailure", payload: error.response.data.message })
-    }
-}
-
+    const { data } = await axios.delete(`/api/posts/comments/${id}`, {
+      data: { commentId },
+    });
+    dispatch({
+      type: "deleteCommentSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "deleteCommentFailure",
+      payload: error.response.data.message,
+    });
+  }
+};
 export const createNewPost=(caption,image)=>async(dispatch)=>{
     try {
 

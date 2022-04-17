@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import './Home.css'
 import User from '../User/User'
 import Post from '../Post/Post'
@@ -14,18 +14,36 @@ function Home() {
   const dispatch = useDispatch();
     const { user, loading: userLoading } = useSelector((state) => state.user);
   
-  const {loading,posts,error}= useSelector(state => state.postOffollowing)
+  //const {loading,posts,error}= useSelector(state => state.postOffollowing)
+
+  const { loading, posts,hasNextPage, currentPage, error } = useSelector(state => state.postOffollowing)
 
   const {users,loading:usersLoading}=useSelector((state)=>state.allUsers);
 
-  
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
+  const [count,setCount]=useState(1);
+
+
+  const handleScroll=async()=>{
+    if(hasNextPage){
+        await sleep(1000);
+        dispatch(getFollowingPost(count))
+        setCount(currentPage+1);
+    }
+    else{
+      setCount(1);
+      dispatch(getFollowingPost(count))
+    }
+  }
 
   
 
   useEffect(() => {
 
-    dispatch(getFollowingPost());
+    dispatch(getFollowingPost(1));
 
     dispatch(getAllUsers());
   },[dispatch])
@@ -115,7 +133,7 @@ useEffect(()=>{
                 </div>
             </div>
             <NewPost/>
-            <main className='feed'>
+            <main className='feed'  onScroll={handleScroll}>
             {loading || usersLoading===true  ? <Loader/> :<div>
             { posts && posts.length > 0 ? posts.map((post)=>(
         <Post 

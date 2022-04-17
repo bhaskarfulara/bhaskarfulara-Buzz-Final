@@ -11,10 +11,12 @@ import {
     // AddComment
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCommentOnPost, likePost, updatePost,deletePost } from '../../Actions/Post'
+import { addCommentOnPost, likePost, updatePost,deletePost, flagPost } from '../../Actions/Post'
 import { getFollowingPost, getMyPosts,loadUser } from '../../Actions/User';
 import User from '../User/User'
 import CommentCard from '../comment card/CommentCard';
+import FlagIcon from '@mui/icons-material/Flag';
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 
 
 // import { useAlert } from 'react-alert'; 
@@ -25,6 +27,7 @@ const Post = ({ postId,
    postImage,
     likes = [],
     comments = [],
+    flags=[],
     ownerImage,
     ownerName,
     ownerId,
@@ -53,7 +56,7 @@ const Post = ({ postId,
     const [commentToggle, setCommentToggle] = useState(false)
     const [captionValue, setCaptionValue] = useState(caption)
     const [captionToggle, setCaptionToggle] = useState(false)
-
+    const [isFlaged,setIsFlaged]=useState(false);
 
 
     const dispatch = useDispatch();
@@ -72,6 +75,18 @@ const Post = ({ postId,
         }
         // alert.success("Liked");
     }
+
+    const flagHandler=async()=>{
+        setIsFlaged(!isFlaged)
+        await dispatch(flagPost(postId));
+        if (!isAccount) {
+            dispatch(getFollowingPost());
+        }
+        else {
+            dispatch(getMyPosts(postId));
+        }
+    }
+
 
     const addCommenthandler = async (e) => {
 
@@ -122,7 +137,12 @@ const Post = ({ postId,
                 setLiked(true)
             }
         })
-    }, [likes, user._id,dispatch])
+        flags.forEach(item => {
+            if (item._id === user._id) {
+                setIsFlaged(true)
+            }
+        })
+    }, [likes, user._id,dispatch,flags])
 
 
 
@@ -164,6 +184,8 @@ const Post = ({ postId,
                 
                 <Button onClick={() => setCommentToggle(!commentToggle)}><ChatBubbleOutline /></Button>
                 {isDelete ? <Button onClick={()=>deletePostHandler()}><DeleteOutline /></Button> : null}
+
+                <Button onClick={flagHandler}>{isFlaged ? <FlagIcon/> : <FlagOutlinedIcon/>}</Button>
 
             </div>
             <Dialog open={likesUser} onClose={() => setlikesUser(!likesUser)}>

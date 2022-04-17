@@ -24,6 +24,14 @@ const postSchema = new mongoose.Schema({
            
        },
    ],
+   flags:[
+    {
+        
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+        
+    },
+    ],
 
   comments:[
     {

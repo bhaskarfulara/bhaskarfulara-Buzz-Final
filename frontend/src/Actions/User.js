@@ -86,18 +86,18 @@ export const loadUser = () => async (dispatch) => {
     }
 };
 
-export const getFollowingPost=()=>async(dispatch)=>{
+export const getFollowingPost=(page)=>async(dispatch)=>{
     try {
-
+        
         dispatch({
             type: "postOfFollowingRequest",
         })
 
-        const {data}=await axios.get("api/posts")
-
+        const {data}=await axios.get(`api/posts?page=${page}`);
+        
         dispatch({
             type:"postOfFollowingSuccess",
-            payload: data.posts,
+            payload: data,
         })
         
     } catch (error) {
