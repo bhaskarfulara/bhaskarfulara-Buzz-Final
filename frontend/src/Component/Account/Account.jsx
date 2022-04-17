@@ -29,10 +29,12 @@ function Account() {
     const deleteProfileHandler=async()=>{
         await dispatch(deleteMyProfile());
         dispatch(logoutUser());
+        
     }
 
     useEffect(() => {
         dispatch(getMyPosts());
+      
     }, [dispatch])
 
     useEffect(() => {
@@ -53,6 +55,7 @@ function Account() {
                 <main className="myfeed">
                 {
                     posts && posts.length > 0 ? posts.map((post) => (
+
                         <Post
                             key={posts._id}
                             caption={post.caption}
@@ -78,7 +81,7 @@ function Account() {
                 <div className="frnPost" style={{width:'100%'}}>
                     <div className='frndList'>
                         <button onClick={() => setFriendsToggle(!friendsToggle)}><Typography>Friends</Typography></button>
-                        <Typography>{user.friends.length}</Typography>
+                        <Typography>{user.friends.length-1}</Typography>
                     </div>
                     <div className='postList'>
                         <Typography>Post</Typography>
@@ -103,7 +106,9 @@ function Account() {
                     <Typography variant="h4">Friends</Typography>
                     {
                         user && user.friends.length>0 ?
-                        user.friends.map((friend) => (<User
+                        user.friends.map((friend) => (
+                        
+                        <User
                             key={friend._id}
                             userId={friend._id}
                             name={friend.name} avatar={friend.avatar.url} />)):<Typography style={{margin:"2vmax"}}>No Friends</Typography>

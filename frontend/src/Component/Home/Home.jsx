@@ -19,7 +19,7 @@ function Home() {
   const {users,loading:usersLoading}=useSelector((state)=>state.allUsers);
 
 
-  
+
   useEffect(()=>{
     dispatch(followAdmin());
   },[])
@@ -61,7 +61,7 @@ function Home() {
 
                 <div className='profileDetail'>
                     <div>
-                        {user.friends.length}
+                        {user.friends.length-1}
                         <p style={{color:'grey'}}>Friends</p>
                     </div>
                     <div>

@@ -34,6 +34,7 @@ function NewPost() {
         
         
         dispatch(loadUser());
+        window.location.reload(true);
 
     }
 
