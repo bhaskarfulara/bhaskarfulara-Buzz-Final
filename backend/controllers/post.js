@@ -5,26 +5,75 @@ const cloudinary=require("cloudinary")
 
 exports.createPost = async (req,res) => {
     try{
+         
+         //const myCloud=await cloudinary.uploader.upload(req.body.image,{folder:"posts",});
+         
+         
+        if(req.body.image===null){
+          const newPostData = {
+            caption:req.body.caption,
+            image:{
+                public_id:"myCloud.public_id",
+                url:"myCloud.secure_url",
+            },
+            owner:req.user._id,
+          }
+          
+            const newPost = await Post.create(newPostData);
 
-        const myCloud=await cloudinary.uploader.upload(req.body.image,{folder:"posts",});
-        const newPostData = {
+            const user = await User.findById(req.user._id);
+
+            user.posts.unshift(newPost._id);
+       
+
+        
+            await user.save();
+
+           
+        
+        }
+        else{
+          const myCloud=await cloudinary.uploader.upload(req.body.image,{folder:"posts",});
+          const newPostData = {
             caption:req.body.caption,
             image:{
                 public_id:myCloud.public_id,
                 url:myCloud.secure_url,
+                
             },
             owner:req.user._id,
-           
-        };
-        const newPost = await Post.create(newPostData);
+          }
+            const newPost = await Post.create(newPostData);
 
         const user = await User.findById(req.user._id);
 
         user.posts.unshift(newPost._id);
+       
 
         
-        
         await user.save();
+
+           
+        };
+        
+        
+        //new changes for post creation
+        // if(image.public_id && image.url ===null){
+        //   const newPost1 = await Post.create(newPostData);
+        //   const user = await User.findById(req.user._id);
+        //   user.posts.unshift(newPost1._id);
+        //   await user.save();
+        // }
+         
+        // const newPost = await Post.create(newPostData);
+
+        // const user = await User.findById(req.user._id);
+
+        // user.posts.unshift(newPost._id);
+       
+
+        
+        // await user.save();
 
         
 
@@ -33,6 +82,7 @@ exports.createPost = async (req,res) => {
             message: "Post created",
     
         })
+      
 
     }catch(error){
         res.status(500).json({
@@ -42,6 +92,45 @@ exports.createPost = async (req,res) => {
     }
 
 };
+
+// exports.createPostOnlyCaption = async (req,res) => {
+//   try{
+
+    
+//       const newPostData = {
+//           caption:req.body.caption,
+          
+//           owner:req.user._id,
+         
+//       };
+//       const newPost = await Post.create(newPostData);
+
+//       const user = await User.findById(req.user._id);
+
+//       user.posts.unshift(newPost._id);
+
+      
+      
+//       await user.save();
+
+      
+
+//       res.status(201).json({
+//           success:true,
+//           message: "Post of caption only created",
+  
+//       })
+
+//   }catch(error){
+//       res.status(500).json({
+//           success:false,
+//           message:error.message
+//       });
+//   }
+
+// };
+
+
 exports.deletePost = async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);

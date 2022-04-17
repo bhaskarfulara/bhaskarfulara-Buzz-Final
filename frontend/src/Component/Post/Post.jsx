@@ -22,7 +22,7 @@ import CommentCard from '../comment card/CommentCard';
 
 const Post = ({ postId,
     caption,
-    postImage,
+   postImage,
     likes = [],
     comments = [],
     ownerImage,
@@ -136,8 +136,10 @@ const Post = ({ postId,
                     >
                         {caption}
                     </Typography>
-            
-            <img src={postImage} alt='Post' className='postImg'/>
+            {
+                postImage==="myCloud.secure_url" ? <img src={postImage} style={{display:"none"}} alt='Post' className='postImg'/>:<img src={postImage} alt='Post' className='postImg'/>
+            }
+            {/* <img src={postImage} alt='Post' className='postImg'/> */}
 
             <button style={{ backgroundColor: "white", border: "none", cursor: "pointer", margin: "1vmax 2vmax" }} onClick={() => setlikesUser(!likesUser)} disabled={likes.length === 0 ? true : false}>{likes.length} Likes</button>
             <div className="postFooter">

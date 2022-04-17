@@ -1,13 +1,14 @@
 import { Button, Typography } from '@mui/material'
 import React,{useState,useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewPost } from '../../Actions/Post'
+import { createNewPost, createNewPostCaption } from '../../Actions/Post'
 import { loadUser } from '../../Actions/User'
 import './NewPost.css'
 function NewPost() {
 
     const[image,setImage]=useState(null)
     const[caption,setCaption]=useState("")
+
     const {loading,error,message}=useSelector((state)=>state.like);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -23,13 +24,19 @@ function NewPost() {
       };
 
     const dispatch=useDispatch();
-
+    
     const submitHandler=async(e)=>{
+        
         e.preventDefault();
-        await dispatch(createNewPost(caption,image));
+        
+
+       await dispatch(createNewPost(caption,image));
+        
         
         dispatch(loadUser());
+
     }
+
 
     useEffect(() => {
         if(error){

@@ -49,6 +49,18 @@ export const likeReducer = createReducer(initialState, {
         state.loading = false
         state.error = action.payload
     },
+
+    // newPostCaptionRequest: (state) => {
+    //     state.loading = true;
+    // },
+    // newPostCaptionSuccess: (state, action) => {
+    //     state.loading = false
+    //     state.message = action.payload
+    // },
+    // newPostCaptionFailure: (state, action) => {
+    //     state.loading = false
+    //     state.error = action.payload
+    // },
     updateCaptionRequest: (state) => {
         state.loading = true;
     },

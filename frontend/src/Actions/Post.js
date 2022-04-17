@@ -127,3 +127,21 @@ export const createNewPost=(caption,image)=>async(dispatch)=>{
         dispatch({ type: "newPostFailure", payload: error.response.data.message })
     }
 }
+// export const createNewPostCaption=(caption)=>async(dispatch)=>{
+//   try {
+
+//       dispatch({
+//           type: "newPostCaptionRequest",
+//       })
+
+//       const {data}=await axios.post(`api/post/uploadCaption`,{caption})
+
+//       dispatch({
+//           type:"newPostCaptionSuccess",
+//           payload: data.message,
+//       })
+      
+//   } catch (error) {
+//       dispatch({ type: "newPostCaptionFailure", payload: error.response.data.message })
+//   }
+// }
