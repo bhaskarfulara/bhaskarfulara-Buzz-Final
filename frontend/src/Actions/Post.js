@@ -109,26 +109,25 @@ export const addCommentOnPost=(id,comment)=>async(dispatch)=>{
 }
 
 
-export const deleteCommentOnPost = (id, commentId) => async (dispatch) => {
-  try {
-    dispatch({
-      type: "deleteCommentRequest",
-    });
+export const deleteCommentOnPost=(id,commentId)=>async(dispatch)=>{
+    try {
 
-    const { data } = await axios.delete(`/api/posts/comments/${id}`, {
-      data: { commentId },
-    });
-    dispatch({
-      type: "deleteCommentSuccess",
-      payload: data.message,
-    });
-  } catch (error) {
-    dispatch({
-      type: "deleteCommentFailure",
-      payload: error.response.data.message,
-    });
-  }
-};
+        dispatch({
+            type: "deleteCommentRequest",
+        })
+
+        const {data}=await axios.delete(`api/posts/comments/${id}`,{data:commentId})
+
+        dispatch({
+            type:"deleteCommentSuccess",
+            payload: data.message,
+        })
+        
+    } catch (error) {
+        dispatch({ type: "deleteCommentFailure", payload: error.response.data.message })
+    }
+}
+
 export const createNewPost=(caption,image)=>async(dispatch)=>{
     try {
 

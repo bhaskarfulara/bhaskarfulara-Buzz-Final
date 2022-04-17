@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect} from 'react'
 import './Home.css'
 import User from '../User/User'
 import Post from '../Post/Post'
@@ -20,22 +20,15 @@ function Home() {
 
   const {users,loading:usersLoading}=useSelector((state)=>state.allUsers);
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  const [count,setCount]=useState(1);
 
 
-  const handleScroll=async()=>{
+  const handleScroll=()=>{
+    console.log(hasNextPage, currentPage)
     if(hasNextPage){
-        await sleep(1000);
-        dispatch(getFollowingPost(count))
-        setCount(currentPage+1);
-    }
-    else{
-      setCount(1);
-      dispatch(getFollowingPost(count))
+      setTimeout(()=>{
+        dispatch(getFollowingPost(currentPage+1))
+
+      },3000);
     }
   }
 
@@ -148,7 +141,7 @@ useEffect(()=>{
         ownerId= {post.owner._id}
         />
 
-      )) : <Typography variant='h6'>No post yet</Typography>
+      )) : <Typography variant='h6'>All Feed Done</Typography>
     }
             </div>}
             </main>

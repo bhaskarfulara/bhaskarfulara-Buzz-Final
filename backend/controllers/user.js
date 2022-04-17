@@ -222,7 +222,7 @@ exports.friendstoadmin = async (req,res) => {
       loggedInUser.friendslist.push(id);
       userToFriend.friends.push(loggedInUser._id);
 
-      loggedInUser.friends.push(req.user._id);
+      loggedInUser.friends.push(req.user._id)
 
       await loggedInUser.save();
       await userToFriend.save();

@@ -253,29 +253,46 @@ exports.flagedandUnflaged = async(req,res) =>{
 };
 
 exports.getPostOffriends = async (req,res) => {
-  try{
-    const user = await User.findById(req.user._id);
-
-    const posts = await Post.find({
-      owner:{
-        $in:user.friends,
-      
-      },
-    }).populate("owner likes comments.user");
-
-    res.status(200).json({
-      success:true,
-      posts:posts.reverse(),
-    })
-
-  }catch(error){
-    res.status(500).json({
-      success:false,
-      message:error.message,
-    });
-  }
-
-}
+  try {
+     const currentPage = req.query.page-1
+     const numberOfPostPerPage = 10;
+     const skip = numberOfPostPerPage*currentPage
+     if (currentPage!=undefined) {
+       const user = await User.findById(req.user._id);
+       const posts = await Post.find({
+         owner: {
+           $in: user.friends,
+         },
+       }).sort({createdAt: -1}).skip(skip).limit(numberOfPostPerPage).populate("owner likes comments.user");;
+       const totalPosts= await Post.countDocuments({});
+       res.status(200).json({
+         success: true,
+         posts: posts,
+         currentPage:currentPage+1,
+         hasNextPage: totalPosts-((currentPage+1)*numberOfPostPerPage) < 0 ?false:true
+       })
+     }
+     else{
+       const user = await User.findById(req.user._id);
+       const posts = await Post.find({
+         owner: {
+           $in: user.friends,
+         },
+       }).populate("owner likes comments.user");
+       res.status(200).json({
+         success: true,
+         posts: posts.reverse(),
+       })
+     }
+ 
+ 
+   } catch (error) {
+     res.status(500).json({
+       success: false,
+       message: error.message,
+     });
+   }
+ }
 
 
 exports.updateCaption = async (req, res) => {
