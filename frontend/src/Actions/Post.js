@@ -116,7 +116,9 @@ export const deleteCommentOnPost=(id,commentId)=>async(dispatch)=>{
             type: "deleteCommentRequest",
         })
 
-        const {data}=await axios.delete(`api/posts/comments/${id}`,{data:commentId})
+        const { data } = await axios.delete(`/api/posts/comments/${id}`, {
+          data: { commentId },
+        });
 
         dispatch({
             type:"deleteCommentSuccess",
